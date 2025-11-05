@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/home_screen.dart';
 import 'services/settings_service.dart';
-import 'firebase_options.dart';
+import 'firebase_env.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
   try {
     await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
+      options: FirebaseEnv.webOptions,
     );
   } catch (e) {
     debugPrint('Firebase error: $e');

@@ -1,52 +1,33 @@
 # 🔥 Firebase Setup Instructions
 
-## ⚠️ IMPORTANT SECURITY NOTICE
-The Firebase API keys have been removed from the public repository for security reasons.
+## ⚠️ SECURITY NOTE
+Firebase credentials are stored in `lib/firebase_env.dart` which is excluded from GitHub via `.gitignore`.
 
-## 🛠️ Setup Steps
+## 🛠️ Quick Setup
 
-### 1. Get Your Firebase Configuration
-1. Go to [Firebase Console](https://console.firebase.google.com/)
-2. Select your project: `billbuddy-90b14`
-3. Go to **Project Settings** → **General**
-4. Scroll down to **Your apps** section
-5. Click on the **Web app** (</>) icon
-6. Copy the `firebaseConfig` object
+### For New Developers:
+1. Get Firebase config from project owner
+2. Create `lib/firebase_env.dart` with your credentials
+3. Run the app: `flutter run -d chrome`
 
-### 2. Configure Firebase Options
-1. Open `lib/firebase_options.dart`
-2. Replace the placeholder values with your actual Firebase config:
-
+### Firebase Environment File Structure:
 ```dart
-static const FirebaseOptions web = FirebaseOptions(
-  apiKey: "your-actual-api-key",
-  authDomain: "billbuddy-90b14.firebaseapp.com",
-  projectId: "billbuddy-90b14", 
-  storageBucket: "billbuddy-90b14.firebasestorage.app",
-  messagingSenderId: "your-sender-id",
-  appId: "your-app-id",
-);
+// lib/firebase_env.dart
+import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
+
+class FirebaseEnv {
+  static const FirebaseOptions webOptions = FirebaseOptions(
+    apiKey: "your-api-key",
+    authDomain: "your-project.firebaseapp.com",
+    projectId: "your-project-id",
+    storageBucket: "your-project.firebasestorage.app", 
+    messagingSenderId: "your-sender-id",
+    appId: "your-app-id",
+  );
+}
 ```
 
-### 3. Security Notes
-- ✅ `firebase_options.dart` is in `.gitignore` - it won't be committed
-- ✅ Never commit API keys to version control
-- ✅ Each developer needs their own Firebase configuration
-- ✅ Use environment variables for production deployments
-
-### 4. Run the App
-```bash
-flutter pub get
-flutter run -d chrome
-```
-
-## 🔒 Security Best Practices
-1. **Never commit** `firebase_options.dart`
-2. **Regenerate API keys** if accidentally exposed
-3. **Use Firebase security rules** to protect your database
-4. **Enable Firebase App Check** for additional security
-
-## 📞 Need Help?
-- Check Firebase Console for your project configuration
-- Ensure Firestore Database is created and configured
-- Verify web app is properly registered in Firebase
+## 🔒 Security Features:
+- ✅ `firebase_env.dart` is in `.gitignore` 
+- ✅ Credentials stay local, never committed to GitHub
+- ✅ Clean and simple setup

@@ -12,8 +12,8 @@
 .swiftpm/
 migrate_working_dir/
 
-# Firebase Security - DO NOT COMMIT
-lib/firebase_options.dart
+# Firebase Environment - DO NOT COMMIT
+lib/firebase_env.dart
 
 # IntelliJ related
 *.iml
