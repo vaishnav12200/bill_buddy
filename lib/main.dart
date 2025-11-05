@@ -2,20 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/home_screen.dart';
 import 'services/settings_service.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
   try {
     await Firebase.initializeApp(
-      options: const FirebaseOptions(
-        apiKey: "AIzaSyAi4Uq0OYG6DnFV2ra7Ln8GYJYzNjZugjY",
-        authDomain: "billbuddy-90b14.firebaseapp.com",
-        projectId: "billbuddy-90b14",
-        storageBucket: "billbuddy-90b14.firebasestorage.app",
-        messagingSenderId: "809324892509",
-        appId: "1:809324892509:web:23d12579e6b8407c4018b4",
-      ),
+      options: DefaultFirebaseOptions.currentPlatform,
     );
   } catch (e) {
     debugPrint('Firebase error: $e');
